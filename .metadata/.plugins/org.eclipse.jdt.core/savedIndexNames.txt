@@ -1,0 +1,11 @@
+INDEX VERSION 1.131+C:\Users\Basti\eclipse-workspace\OOPJavaFraUAS-Part1\.metadata\.plugins\org.eclipse.jdt.core
+3275903304.index
+3959137331.index
+3716777220.index
+3323851763.index
+1283954658.index
+3245357034.index
+1319711200.index
+998287220.index
+2971321189.index
+1484351056.index

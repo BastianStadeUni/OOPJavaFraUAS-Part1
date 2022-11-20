@@ -1,0 +1,113 @@
+
+interface Relatable {
+        
+    // this (object calling isLargerThan)
+    // and other must be instances of 
+    // the same class returns 1, 0, -1 
+    // if this is greater than, 
+    // equal to, or less than other
+    public int isLargerThan(Relatable other);
+}
+
+class Point {
+    public int x = 0;
+    public int y = 0;
+    //constructor
+    public Point(int a, int b) {
+        x = a;
+        y = b;
+    }
+}
+
+class RectanglePlus 
+implements Relatable {
+public int width = 0;
+public int height = 0;
+public Point origin;
+
+// four constructors
+public RectanglePlus() {
+    origin = new Point(0, 0);
+}
+public RectanglePlus(Point p) {
+    origin = p;
+}
+public RectanglePlus(int w, int h) {
+    origin = new Point(0, 0);
+    width = w;
+    height = h;
+}
+public RectanglePlus(Point p, int w, int h) {
+    origin = p;
+    width = w;
+    height = h;
+}
+
+// a method for moving the rectangle
+public void move(int x, int y) {
+    origin.x = x;
+    origin.y = y;
+}
+
+// a method for computing
+// the area of the rectangle
+public int getArea() {
+    return width * height;
+}
+
+// a method required to implement
+// the Relatable interface
+public int isLargerThan(Relatable other) {
+    RectanglePlus otherRect 
+        = (RectanglePlus)other;
+    if (this.getArea() < otherRect.getArea())
+        return -1;
+    else if (this.getArea() > otherRect.getArea())
+        return 1;
+    else
+        return 0;               
+}
+protected Object clone() throws CloneNotSupportedException {
+	return super.clone();
+}
+public boolean equals(Object obj) {
+	if(obj instanceof RectanglePlus) {
+		if(((RectanglePlus) obj).width == this.width && ((RectanglePlus) obj).height == this.height) {
+			if(((RectanglePlus) obj).origin.equals(this.origin)){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+}
+
+public class RectanglePlusDemo {
+
+	public static void main(String[] args) {
+		Point p1 = new Point(0, 5);
+		System.out.println("p1 created with x coordinate: " + p1.x + " and y coordinate: " + p1.y);
+		RectanglePlus r1 = new RectanglePlus();
+		RectanglePlus r2 = new RectanglePlus(p1);
+		RectanglePlus r3 = new RectanglePlus(2, 2);
+		RectanglePlus r4 = new RectanglePlus(p1, 4, 4);
+		System.out.println("r1 with origin: (" + r1.origin.x + "|" + r1.origin.y + ") and height: " + r1.height + " and width: " + r1.width + " created, with 1. Constructor");
+		System.out.println("r2 with origin: (" + r2.origin.x + "|" + r2.origin.y + ") and height: " + r2.height + " and width: " + r2.width + " created, with 2. Constructor");
+		System.out.println("r3 with origin: (" + r3.origin.x + "|" + r3.origin.y + ") and height: " + r3.height + " and width: " + r3.width + " created, with 3. Constructor");
+		System.out.println("r4 with origin: (" + r4.origin.x + "|" + r4.origin.y + ") and height: " + r4.height + " and width: " + r4.width + " created, with 4. Constructor");
+		r1.move(5, 5);
+		System.out.println("r1 moved from (0/0) to (5/5)");
+		System.out.println("Area of r3: " + r3.getArea() + "	Area of r4: " + r4.getArea());
+		System.out.println("1 = larger, 0 = same size, -1 = smaller");
+		System.out.println("r1 compared to r2: " + r1.isLargerThan(r2));
+		System.out.println("r3 compared to r4: " + r3.isLargerThan(r4));
+		try {
+			System.out.println(r3.equals(r4));
+			RectanglePlus r5 = (RectanglePlus)r4.clone();
+			System.out.println(r4.equals(r5));
+		}catch(CloneNotSupportedException c) {}
+		
+		
+	}
+
+}

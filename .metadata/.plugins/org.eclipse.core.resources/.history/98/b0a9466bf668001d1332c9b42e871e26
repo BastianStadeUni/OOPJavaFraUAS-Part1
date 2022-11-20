@@ -1,0 +1,15 @@
+import java.util.*;
+import java.io.*;
+
+
+public class W4T5 {
+
+	public static void main(String[] args) {
+		File file1 = new File("C:\\Users\\Basti\\eclipse-workspace\\W4T5\\src\\text.in.txt");
+		File file2 = new File("C:\\Users\\Basti\\eclipse-workspace\\W4T5\\src\\text.in.txt")
+		FileWriter writer = new FileWriter("C:\\Users\\Basti\\eclipse-workspace\\W4T5\\src\\text.out.txt");
+		Scanner sc = new Scanner(file);
+
+	}
+
+}

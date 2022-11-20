@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class MixUpLetters1 {
+
+	public static void main(String[] args) throws IOException {
+		File file = new File("C:\\Users\\Basti\\eclipse-workspace\\W4T4\\src");
+		FileWriter writer = new FileWriter("text.out.txt");
+		Scanner sc = new Scanner(file);
+		ArrayList<String> text = new ArrayList<String>();
+		ArrayList<String> word = new ArrayList<String>();
+		
+		while(sc.hasNext()) {
+			text.add(sc.next());
+		}
+		for(int i = 0; i < text.size(); i++) {
+			String curr = text.get(i);
+			String[] split = new String[text.get(i).length()];
+			split = curr.split("");
+			for(int j = 1; j < split.length - 1; j++) {
+				word.add(split[j]);
+			}
+			Collections.shuffle(word, new Random());
+			for(int j = 1; j < split.length - 1; j++) {
+				split[j] = word.get(j - 1);
+			}
+			writer.write(split.toString());
+			word.clear();
+		}
+
+	}
+
+}
